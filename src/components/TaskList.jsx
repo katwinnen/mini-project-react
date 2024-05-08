@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import tasksData from '../Tasks.json';
 import TaskItem from './TaskItem';
 
@@ -14,12 +15,15 @@ const TaskList = () => {
   return (
     <ul>
       {tasks.map((task, index) => (
-        <TaskItem
-          key={index}
-          task={task.task}
-          completed={task.completed}
-          onDelete={() => deleteTask(index)}
-        />
+        <li key={index}>
+          <Link to={`/item/${index + 1}`}>
+            <TaskItem
+              task={task.task}
+              completed={task.completed}
+              onDelete={() => deleteTask(index)}
+            />
+          </Link>
+        </li>
       ))}
     </ul>
   );
